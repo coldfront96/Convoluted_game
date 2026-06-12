@@ -6,6 +6,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useGameStore } from '../store/useGameStore';
 import { UpgradeRow } from '../components/UpgradeRow';
 import { HpBar } from '../components/HpBar';
+import { SkillBar } from '../components/SkillBar';
 import { colors, spacing, radius } from '../theme';
 import { TICK_MS, TRAIN_COST, DEEP_REST_COST } from '../game/constants';
 import { effectivePower, effectiveMaxEnergy, effectiveMaxHp } from '../game/engine';
@@ -29,6 +30,7 @@ export function GameScreen() {
   const essence     = useGameStore((s) => s.essence);
   const inventory   = useGameStore((s) => s.inventory);
   const equipped    = useGameStore((s) => s.equipped);
+  const activeBuffs = useGameStore((s) => s.activeBuffs);
   const advanceTick = useGameStore((s) => s.advanceTick);
   const train       = useGameStore((s) => s.train);
   const deepRest    = useGameStore((s) => s.deepRest);
@@ -39,7 +41,7 @@ export function GameScreen() {
   }, [advanceTick]);
 
   // Derived values
-  const snap         = { power, maxEnergy, maxPlayerHp, equipped };
+  const snap         = { power, maxEnergy, maxPlayerHp, equipped, activeBuffs };
   const totalPower   = effectivePower(snap);
   const totalEnergy  = effectiveMaxEnergy(snap);
   const totalMaxHp   = effectiveMaxHp(snap);
@@ -115,6 +117,9 @@ export function GameScreen() {
         <StatCell label="Shards" value={shards} />
         {essence > 0 && <StatCell label="Essence" value={essence} />}
       </View>
+
+      {/* ── Skills ── */}
+      <SkillBar />
 
       {/* ── Upgrades ── */}
       <UpgradeRow upgrades={upgrades} />
