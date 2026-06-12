@@ -1,3 +1,5 @@
+export type FloorType = 'normal' | 'elite' | 'boss';
+
 export type Rarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
 
 export type EquipmentSlot = 'weapon' | 'helmet' | 'chest' | 'gloves' | 'boots' | 'ring' | 'amulet';

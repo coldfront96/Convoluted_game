@@ -5,6 +5,7 @@ export const ENERGY_REGEN_EVERY = 3;
 export const TRAIN_COST        = 20;
 export const DEEP_REST_COST    = 1;
 export const BASE_PLAYER_HP    = 100;
+export const HP_REGEN_TICKS    = 5;    // restore 1 HP every N ticks
 
 // Depth milestones that drop a chest
 export const CHEST_DROP_EVERY  = 10;
